@@ -1,5 +1,5 @@
 import * as express from 'express';
-import {getListedFilesWithInfo} from "./getListedFilesWithInfo";
+import { getListedFilesWithInfo } from "./modules/getListedFilesWithInfo";
 
 const app = express();
 const { PORT = 3001} = process.env;

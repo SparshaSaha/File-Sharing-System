@@ -1,6 +1,6 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import {IApp, IRequest, IResponse} from "./types/types.interface";
+import {IApp, IRequest, IResponse} from "../types/types.interface";
 
 
 export const getListedFilesWithInfo = (app: IApp) => {
