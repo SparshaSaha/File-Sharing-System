@@ -1,5 +1,5 @@
 *node_modules*
 *Server/build/*
 *Server/yarn-error*
-*Server/.DS*
+.DS_Store
 *Server/dev/*
