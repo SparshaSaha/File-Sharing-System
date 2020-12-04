@@ -10,11 +10,13 @@ The project has two parts :-
 2. **Client Side React Web Application which will internally perform interactions with the server**
 
 **Question: Why did we choose NodeJS and React?**
+
 **Answer: You know the reasons :P.**
 
 We will use **webpack** for bundling our source code for the Server as well as the Client.
 
 **Question: Why use webpack?**
+
 **Answer: Honestly speaking, it is the only module bundler I know how to use. And also it's pretty great!**
 
 # Under Construction. We will add more information as we progress
