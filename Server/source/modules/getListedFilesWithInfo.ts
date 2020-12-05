@@ -13,7 +13,7 @@ export const getListedFilesWithInfo = (app: IApp) => {
     
     app.get('/getFilesDetails', async (_request: IRequest, response: IResponse) => {
         recursivelyParseFolders(baseDir).then((folder: IFolder) => {
-            response.send(folder);
+            response.status(200).json(folder);
         }).catch((_error: Error) => {
             response.status(errorCodes.INTERNAL_SERVER_ERROR).send({});
         });
@@ -24,7 +24,7 @@ const recursivelyParseFolders = async (path: string) => {
     const currentFolder: IFolder = { files: [], folders: [], path };
     const content = await readdir(path);
     const subFolderPromises: Promise<IFolder>[] = [];
-    
+ 
     content.forEach((entity: string) => {
         const fileStats = fs.statSync(`${path}/${entity}`);
         if(fileStats.isFile()) {
