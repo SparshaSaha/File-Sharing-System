@@ -4,3 +4,4 @@
 .DS_Store
 *Client/dev*
 *Server/dev*
+*Client/yarn-error*
