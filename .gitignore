@@ -2,4 +2,5 @@
 *Server/build/*
 *Server/yarn-error*
 .DS_Store
-*Server/dev/*
+*Client/dev*
+*Server/dev*
