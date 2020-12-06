@@ -7,7 +7,7 @@
   },
   "main": "index.js",
   "repository": "https://github.com/SparshaSaha/File-Sharing-System.git",
-  "author": "<saha.sparsha@gmail.com>",
+  "author": "Sparsha Saha, Sourjya Mukherjee",
   "license": "MIT",
   "dependencies": {
     "@types/express": "^4.17.9",
