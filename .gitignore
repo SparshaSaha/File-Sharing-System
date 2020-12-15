@@ -1,7 +1,0 @@
-*node_modules*
-*Server/build/*
-*Server/yarn-error*
-.DS_Store
-*Client/dev*
-*Server/dev*
-*Client/yarn-error*
