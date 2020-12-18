@@ -8,13 +8,12 @@ interface IListHeaderProps {
 
 const divStyles: CSS.Properties = {
   marginTop: "5rem",
-  marginLeft: "10rem",
   width: "50rem",
   display: "flex",
   justifyContent: "space-between",
 };
 
-export const ListHeader = (props: IListHeaderProps) => {
+export const ListHeader = (props: IListHeaderProps): JSX.Element => {
   const { coloumnNames } = props;
   return (
     <div style={divStyles}>
