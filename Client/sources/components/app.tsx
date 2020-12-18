@@ -3,5 +3,9 @@ import { ListHeader } from "./fileList";
 export interface IAppProps {}
 
 export default function IApp(props: IAppProps) {
-  return <ListHeader coloumnNames={["Hello", "One", "Two"]}></ListHeader>;
+  return (
+    <ListHeader
+      coloumnNames={["File Name", "File Size", "File Path"]}
+    ></ListHeader>
+  );
 }

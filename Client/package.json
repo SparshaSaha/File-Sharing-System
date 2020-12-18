@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "prod": "webpack --config webpack.production.config.js",
-    "dev": "webpack --config webpack.development.config.js"
+    "dev": "webpack --config webpack.development.config.js",
+    "servedev": "webpack --config webpack.development.config.js && serve -s dev"
   },
   "dependencies": {
     "react": "^17.0.1",
