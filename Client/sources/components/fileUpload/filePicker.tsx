@@ -1,5 +1,6 @@
 import axios from "axios";
 import * as React from "react";
+import { uploadFileUrl } from "../../urls";
 interface IFilePickerProps {
   fileToUpload: File;
   setFileToUpload: React.Dispatch<File | undefined>;
@@ -74,7 +75,7 @@ const handleFileUpload = async (
   let formData = new FormData();
   formData.append("file", fileToUpload, fileToUpload.name);
   try {
-    await axios.post("http://192.168.0.115:3001/uploadFile", formData, {
+    await axios.post(uploadFileUrl, formData, {
       headers: {
         "content-type": "multipart/form-data",
       },
