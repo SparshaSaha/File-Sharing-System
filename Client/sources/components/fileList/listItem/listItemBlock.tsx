@@ -3,6 +3,7 @@ import * as CSS from "csstype";
 
 interface IListItemBlockProps {
   title: string;
+  onItemClick?: (event: React.SyntheticEvent) => void;
 }
 
 const listItemBlockStyles: CSS.Properties = {
@@ -16,6 +17,10 @@ const listItemBlockStyles: CSS.Properties = {
 };
 
 export const ListItemBlock = (props: IListItemBlockProps): JSX.Element => {
-  const { title } = props;
-  return <div style={listItemBlockStyles}>{title}</div>;
+  const { title, onItemClick } = props;
+  return (
+    <div style={listItemBlockStyles} onClick={onItemClick}>
+      {title}
+    </div>
+  );
 };

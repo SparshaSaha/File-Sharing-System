@@ -1,12 +1,13 @@
 import * as React from "react";
-import { ListHeader } from "./header/header";
 import * as CSS from "csstype";
-import { ListRow } from "./listItem/listRow";
+import { ListHeader } from "./header/header";
 import { DataList } from "./listItem/dataList";
 
 interface IFileListProps {
   headerNames: string[];
   data: string[][];
+  directoryOnClick: (event: React.SyntheticEvent) => void;
+  fileOnClick: (event: React.SyntheticEvent) => void;
 }
 
 const fileListStyles: CSS.Properties = {
@@ -14,11 +15,15 @@ const fileListStyles: CSS.Properties = {
 };
 
 export const FileList = (props: IFileListProps): JSX.Element => {
-  const { headerNames, data } = props;
+  const { headerNames, data, directoryOnClick, fileOnClick } = props;
   return (
     <div style={fileListStyles}>
       <ListHeader coloumnNames={headerNames} />
-      <DataList dataRows={data} />
+      <DataList
+        dataRows={data}
+        directoryOnClick={directoryOnClick}
+        fileOnClick={fileOnClick}
+      />
     </div>
   );
 };
