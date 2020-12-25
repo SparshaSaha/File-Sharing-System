@@ -46,7 +46,7 @@ const useUploadFileCallbacks = (
   );
 
   const fileUploadProgress = React.useCallback(
-    (event) => {
+    (event: ProgressEvent) => {
       setProgress(Math.round((100 * event.loaded) / event.total));
     },
     [setProgress]
