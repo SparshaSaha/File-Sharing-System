@@ -1,6 +1,7 @@
 import axios from "axios";
 import * as React from "react";
 import { uploadFileUrl } from "../../urls";
+
 interface IFilePickerProps {
   fileToUpload: File;
   setFileToUpload: React.Dispatch<File | undefined>;
