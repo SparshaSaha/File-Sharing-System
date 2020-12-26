@@ -1,5 +1,5 @@
 import * as React from "react";
-import { FileList } from "./fileList";
+import { FileViewer } from "./fileListViewer";
 import { FileUploader } from "./fileUpload/fileUploader";
 export interface IAppProps {}
 
@@ -15,19 +15,7 @@ export default function IApp(props: IAppProps) {
   }, []);
   return (
     <>
-      <FileList
-        headerNames={["File Name", "File Size", "File Path"]}
-        data={[
-          ["Sparsha.txt", "200kb", "TestPath", "dir"],
-          ["Spurjya.txt", "200kb", "TestPath", "file"],
-          ["Sparsha.pdf", "200kb", "TestPath", "dir"],
-          ["Spurjya.pdf", "200kb", "TestPath", "file"],
-          ["Sparsha.pptx", "200kb", "TestPath", "dir"],
-          ["Spurjya.pptx", "200kb", "TestPath", "file"],
-        ]}
-        directoryOnClick={directoryC}
-        fileOnClick={fileC}
-      />
+      <FileViewer />
       <FileUploader />
     </>
   );

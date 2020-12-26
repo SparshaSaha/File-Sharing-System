@@ -6,8 +6,8 @@ import { DataList } from "./listItem/dataList";
 interface IFileListProps {
   headerNames: string[];
   data: string[][];
-  directoryOnClick: (event: React.SyntheticEvent) => void;
-  fileOnClick: (event: React.SyntheticEvent) => void;
+  directoryOnClick: (event: React.SyntheticEvent, path: string) => void;
+  fileOnClick: (event: React.SyntheticEvent, path: string) => void;
 }
 
 const fileListStyles: CSS.Properties = {
