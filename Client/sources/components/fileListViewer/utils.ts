@@ -23,6 +23,6 @@ export const downloadFile = async (path: string) => {
     });
     FileSaver.saveAs(response.data, path.split('/').pop())
     } catch(error) {
-        console.log("Error downloading file");
+        console.error("Error downloading file");
     }
 }

@@ -117,7 +117,6 @@ const fetchFilesAndChangeState = async (
   setCurrentDir: React.Dispatch<IFolder | undefined>
 ) => {
   const allFiles = await fetchAllFiles();
-  console.log(allFiles);
   setFilesData(allFiles);
   setCurrentDir(allFiles);
 };

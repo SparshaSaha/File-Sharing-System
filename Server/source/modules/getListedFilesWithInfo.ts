@@ -14,8 +14,7 @@ export const getListedFilesWithInfo = (app: IApp) => {
     app.get('/getFilesDetails', async (_request: IRequest, response: IResponse) => {
         recursivelyParseFolders(baseDir).then((folder: IFolder) => {
             response.status(200).json(folder);
-        }).catch((error: Error) => {
-            console.log(error);
+        }).catch((_error: Error) => {
             response.status(errorCodes.INTERNAL_SERVER_ERROR).send({});
         });
     });
