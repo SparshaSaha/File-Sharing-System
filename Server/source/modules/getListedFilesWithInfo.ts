@@ -9,7 +9,7 @@ import { errorCodes } from '../errorCodes/errorCodes';
 const readdir = promisify(fs.readdir);
 
 export const getListedFilesWithInfo = (app: IApp) => {
-    const baseDir = path.join(__dirname, "../source");
+    const baseDir = path.join(__dirname, "../Database");
     
     app.get('/getFilesDetails', async (_request: IRequest, response: IResponse) => {
         recursivelyParseFolders(baseDir).then((folder: IFolder) => {

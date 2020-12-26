@@ -86,6 +86,6 @@ const handleFileUpload = async (
     setFileToUpload(undefined);
     setProgress(0);
   } catch (error) {
-    console.log("Error uploading the file");
+    console.error("Error uploading the file");
   }
 };

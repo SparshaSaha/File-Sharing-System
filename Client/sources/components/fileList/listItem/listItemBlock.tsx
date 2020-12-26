@@ -14,6 +14,9 @@ const listItemBlockStyles: CSS.Properties = {
   textAlign: "center",
   width: "20rem",
   background: "rgb(248,248,248)",
+  overflow: "hidden",
+  textOverflow: "ellipsis",
+  whiteSpace: "nowrap",
 };
 
 export const ListItemBlock = (props: IListItemBlockProps): JSX.Element => {
