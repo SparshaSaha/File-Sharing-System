@@ -8,6 +8,7 @@ import { getFileFromPath } from './modules/getFileFromPath';
 import { getListedFilesWithInfo } from "./modules/getListedFilesWithInfo";
 import { postFile } from './modules/postFile';
 import { IMulterFile, IMulterDestinationCallback, IMulterFileNameCallback, IMulter } from './interfaces/multer.interface';
+import { createDirectory } from './modules/createDirectory';
 
 const fileStorage = multer.diskStorage({
     destination: (_request: IRequest, file: IMulterFile, callback: IMulterDestinationCallback) => {
@@ -24,9 +25,12 @@ const upload: IMulter = multer({ storage: fileStorage });
 const app = express();
 const { PORT = 3001} = process.env;
 app.use(cors());
+app.use(express.json());
 getListedFilesWithInfo(app);
 getFileFromPath(app);
 postFile(app, upload);
+createDirectory(app);
+
 
 app.get('/', (_request: IRequest, response: IResponse) => {
     response.send("Welcome to FileServer");

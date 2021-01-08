@@ -36,7 +36,7 @@ export const FileViewer = () => {
           headerNames={["Name", "Size", "Type", "Path"]}
           data={directories}
           directoryOnClick={directoryOnClickCallback}
-          fileOnClick={filesOnClickCallback}
+          fileOnClick={filesOnClickCallback} 
         />
       ) : null}
     </>
