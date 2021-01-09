@@ -1,0 +1,10 @@
+.blockStyles{
+    color: HighlightText;
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+    margin-top: 0.5rem;
+    font-size: 130%;
+    width: 20rem;
+    background: rgb(245,245,245);
+    text-align: center
+  };

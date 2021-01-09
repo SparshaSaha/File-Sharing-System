@@ -1,0 +1,12 @@
+.listItemBlockStyles {
+    margin-left: 0.2rem;
+    margin-right: 0.2rem;
+    margin-top: 0.1rem;
+    margin-bottom: 0.1rem;
+    text-align: center;
+    width: 20rem;
+    background: rgb(248,248,248);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  };

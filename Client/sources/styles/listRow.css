@@ -1,0 +1,6 @@
+.listRow {
+    margin-top: 1rem;
+    width: 50rem;
+    display: flex;
+    justify-content: space-between
+};
