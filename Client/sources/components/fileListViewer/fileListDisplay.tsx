@@ -3,7 +3,7 @@ import { IFile } from "../../interfaces/file.interface";
 import { IFolder } from "../../interfaces/folder.interface";
 import { downloadFile, fetchAllFiles } from "./utils";
 import { FileList } from "../fileList";
-
+import { GlobalContext } from "../../contexts/globalContext";
 /* 
 Fetches all Files from Server
 Maintains it's own state and shows currentDirectoryFiles
@@ -12,9 +12,11 @@ export const FileViewer = () => {
   const [filesData, setFilesData] = React.useState<IFolder | undefined>(
     undefined
   );
-  const [currentDir, setCurrentDir] = React.useState<IFolder | undefined>(
+
+  const { currentDir , setCurrentDir } = React.useContext(GlobalContext);
+ /* const [currentDir, setCurrentDir] = React.useState<IFolder | undefined>(
     undefined
-  );
+  );*/
   useFetchFilesEffect(setFilesData, setCurrentDir);
   const directories = useMemoizedFileDataPrepare(currentDir);
   const {
@@ -26,7 +28,7 @@ export const FileViewer = () => {
       <button
         disabled={currentDir === filesData}
         onClick={() => {
-          setCurrentDir(filesData);
+        setCurrentDir(filesData);
         }}
       >
         Back to Root Directory
