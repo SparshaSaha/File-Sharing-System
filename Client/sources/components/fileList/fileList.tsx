@@ -1,7 +1,7 @@
 import * as React from "react";
-import * as CSS from "csstype";
 import { ListHeader } from "./header/header";
 import { DataList } from "./listItem/dataList";
+import "../../styles/fileList.css";
 
 interface IFileListProps {
   headerNames: string[];
@@ -10,14 +10,10 @@ interface IFileListProps {
   fileOnClick: (event: React.SyntheticEvent, path: string) => void;
 }
 
-const fileListStyles: CSS.Properties = {
-  marginLeft: "10rem",
-};
-
 export const FileList = (props: IFileListProps): JSX.Element => {
   const { headerNames, data, directoryOnClick, fileOnClick } = props;
   return (
-    <div style={fileListStyles}>
+    <div className={"fileListDivContainer"}>
       <ListHeader coloumnNames={headerNames} />
       <DataList
         dataRows={data}
