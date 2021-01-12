@@ -3,6 +3,7 @@ import GlobalContextProvider from "../contexts/globalContext";
 import { FileViewer } from "./fileListViewer";
 import { FileUploader } from "./fileUpload/fileUploader";
 import { CreateDirectory } from "./directoryOps/createDirectory";
+import { DeleteDirectory } from "./directoryOps/deleteDirectory";
 
 
 export default function IApp() {
@@ -12,6 +13,7 @@ export default function IApp() {
       <FileViewer />
       <FileUploader />
       <CreateDirectory />
+      <DeleteDirectory />
     </GlobalContextProvider>  
     </>
   );

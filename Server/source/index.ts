@@ -9,6 +9,7 @@ import { getListedFilesWithInfo } from "./modules/getListedFilesWithInfo";
 import { postFile } from './modules/postFile';
 import { IMulterFile, IMulterDestinationCallback, IMulterFileNameCallback, IMulter } from './interfaces/multer.interface';
 import { createDirectory } from './modules/createDirectory';
+import { deleteDirectory } from './modules/deleteDirectory';
 
 const fileStorage = multer.diskStorage({
     destination: (_request: IRequest, file: IMulterFile, callback: IMulterDestinationCallback) => {
@@ -30,6 +31,7 @@ getListedFilesWithInfo(app);
 getFileFromPath(app);
 postFile(app, upload);
 createDirectory(app);
+deleteDirectory(app);
 
 
 app.get('/', (_request: IRequest, response: IResponse) => {

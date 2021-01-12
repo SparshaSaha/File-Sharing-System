@@ -1,4 +1,5 @@
 import { IApp, IRequest, IResponse } from "../interfaces/express.interface";
+import { validatePath } from "./utils";
 import * as fs from 'fs';
 
 export const createDirectory = (app: IApp) =>{
@@ -17,12 +18,7 @@ export const createDirectory = (app: IApp) =>{
         }
     })
 
-    const validatePath = (path: string) =>{
-         if(fs.existsSync(path))
-            return true;
-         else
-            return false;   
-    }
+    
 
     const createDirectory = (path: string, dirName: string) =>{
           try{
