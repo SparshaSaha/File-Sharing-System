@@ -1,4 +1,4 @@
-import { AxiosAdapter, AxiosResponse } from 'axios';
+import { AxiosResponse } from 'axios';
 import axios from 'axios';
 import * as FileSaver from "file-saver";
 import { IFolder } from '../../interfaces/folder.interface';

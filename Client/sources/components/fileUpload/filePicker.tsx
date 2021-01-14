@@ -1,6 +1,8 @@
 import axios from "axios";
 import * as React from "react";
 import { uploadFileUrl } from "../../urls";
+import { GlobalContext } from "../../contexts/globalContext";
+import { IFolder } from "../../interfaces/folder.interface";
 
 interface IFilePickerProps {
   fileToUpload: File;
@@ -8,9 +10,11 @@ interface IFilePickerProps {
   setProgress: React.Dispatch<number>;
 }
 
+const { useContext } = React;
+
 export const FilePicker = (props: IFilePickerProps) => {
   const { setFileToUpload, fileToUpload, setProgress } = props;
-
+  const { currentDir } = useContext(GlobalContext);
   // Ref to input element to reset value on file upload completion
   const inputRef = React.useRef<HTMLInputElement>();
 
@@ -18,7 +22,8 @@ export const FilePicker = (props: IFilePickerProps) => {
     setFileToUpload,
     setProgress,
     fileToUpload,
-    inputRef
+    inputRef,
+    currentDir
   );
 
   return (
@@ -37,7 +42,8 @@ const useUploadFileCallbacks = (
   setFileToUpload: React.Dispatch<File | undefined>,
   setProgress: React.Dispatch<number>,
   fileToUpload: File,
-  inputRef: React.RefObject<HTMLInputElement>
+  inputRef: React.RefObject<HTMLInputElement>,
+  currentDir: IFolder
 ) => {
   const onFileChange = React.useCallback(
     (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -59,7 +65,8 @@ const useUploadFileCallbacks = (
       setFileToUpload,
       inputRef,
       fileUploadProgress,
-      setProgress
+      setProgress,
+      currentDir
     );
   }, [fileToUpload]);
 
@@ -71,10 +78,13 @@ const handleFileUpload = async (
   setFileToUpload: React.Dispatch<File | undefined>,
   inputRef: React.RefObject<HTMLInputElement>,
   fileUploadProgress: (event: any) => void,
-  setProgress: React.Dispatch<number>
+  setProgress: React.Dispatch<number>,
+  currentDir: IFolder
 ) => {
   let formData = new FormData();
+  formData.append("filePath", currentDir.path);
   formData.append("file", fileToUpload, fileToUpload.name);
+  
   try {
     await axios.post(uploadFileUrl, formData, {
       headers: {
