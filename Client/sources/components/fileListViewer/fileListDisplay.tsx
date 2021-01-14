@@ -1,7 +1,7 @@
 import * as React from "react";
 import { IFile } from "../../interfaces/file.interface";
 import { IFolder } from "../../interfaces/folder.interface";
-import { downloadFile, fetchAllFiles } from "./utils";
+import { downloadFile, fetchAllFiles , fetchDirectoryByPath } from "./utils";
 import { FileList } from "../fileList";
 import { GlobalContext } from "../../contexts/globalContext";
 /* 
@@ -9,29 +9,45 @@ Fetches all Files from Server
 Maintains it's own state and shows currentDirectoryFiles
 */
 export const FileViewer = () => {
-  const [filesData, setFilesData] = React.useState<IFolder | undefined>(
-    undefined
-  );
+  
 
-  const { currentDir , setCurrentDir } = React.useContext(GlobalContext);
+  const { currentDir , setCurrentDir , filesData , setFilesData } = React.useContext(GlobalContext);
  /* const [currentDir, setCurrentDir] = React.useState<IFolder | undefined>(
     undefined
   );*/
-  useFetchFilesEffect(setFilesData, setCurrentDir);
-  const directories = useMemoizedFileDataPrepare(currentDir);
+  useFetchFilesEffect(setFilesData, setCurrentDir); 
+
+  const directories = useMemoizedFileDataPrepare(currentDir);   //figures out all files/folders within currentDir
+
   const {
     directoryOnClickCallback,
     filesOnClickCallback,
   } = useOnClickCallbacks(setCurrentDir, currentDir);
+
+  //handles the back button click and moves one level up
+  const levelUp = async () =>{
+    const tempPath = currentDir.path.slice(0,currentDir.path.lastIndexOf('/'));
+    if(tempPath === filesData.path)
+      setCurrentDir(filesData);
+    else   
+      setCurrentDir(await fetchDirectoryByPath(tempPath));
+  }
+
   return (
     <>
       <button
-        disabled={currentDir === filesData}
+        disabled={currentDir == filesData}
         onClick={() => {
         setCurrentDir(filesData);
         }}
       >
         Back to Root Directory
+      </button>
+      <button
+        disabled={currentDir == filesData}
+        onClick={levelUp}
+      >
+        Back
       </button>
       {currentDir ? (
         <FileList
@@ -85,12 +101,13 @@ const useOnClickCallbacks = (
 // Prepare current Directory data
 // This function has been memoized to save computation
 const useMemoizedFileDataPrepare = (currentDirData: IFolder | undefined) =>
+//runs everytime currentDirectory changes
   React.useMemo(() => {
     const directories: string[][] = [];
     if (currentDirData) {
-      currentDirData.folders.forEach((folder: IFolder) => {
+      currentDirData.folders.forEach((folder: IFolder) => {      //preparing all folder info within currentDir
         const folderInfos: string[] = [];
-        folderInfos.push(folder.path.split("/").pop());
+        folderInfos.push(folder.path.split("/").pop());              
         folderInfos.push("");
         folderInfos.push("directory");
         folderInfos.push(folder.path);
@@ -99,7 +116,7 @@ const useMemoizedFileDataPrepare = (currentDirData: IFolder | undefined) =>
         directories.push(folderInfos);
       });
 
-      currentDirData.files.forEach((file: IFile) => {
+      currentDirData.files.forEach((file: IFile) => {         //preparing all files info within currentDirectory  
         const fileInfos: string[] = [];
         fileInfos.push(file.name);
         fileInfos.push(`${file.size}`);

@@ -10,7 +10,7 @@ interface IListRow {
 export const ListRow = (props: IListRow): JSX.Element => {
   const { rowItems, onItemClick } = props;
   return (
-    <div className={"listRow"}>
+    <div className="listRow">
       {rowItems[0] === "dir" || rowItems[0] === "file" ? undefined : (
         <ListItemBlock
           key={rowItems[0]}
