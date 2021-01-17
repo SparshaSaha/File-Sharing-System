@@ -31,7 +31,7 @@ export const FilePicker = (props: IFilePickerProps) => {
       <label>
         <input type="file" onChange={onFileChange} ref={inputRef} />
       </label>
-      <button onClick={onFileUpload} disabled={!fileToUpload}>
+      <button type="button" className="btn btn-warning" onClick={onFileUpload} disabled={!fileToUpload}>
         Upload File
       </button>
     </>

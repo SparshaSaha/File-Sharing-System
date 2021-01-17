@@ -14,8 +14,8 @@ export const DeleteDirectory = () => {
 
     return (
         <div>
-           <input type="text" ref={inputRef}/>
-           <button onClick={handleClick}>Delete Directory</button>            
+           Path : <input type="text" ref={inputRef}/>
+           <button type="button" className="btn btn-info ml-2" onClick={handleClick}>Delete File/Directory</button>            
         </div>
     )
 }

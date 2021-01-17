@@ -1,7 +1,7 @@
 import * as React from "react";
 import { ListHeader } from "./header/header";
 import { DataList } from "./listItem/dataList";
-import "../../styles/fileList.css";
+//import "../../styles/fileList.css";
 
 interface IFileListProps {
   headerNames: string[];
@@ -13,7 +13,7 @@ interface IFileListProps {
 export const FileList = (props: IFileListProps): JSX.Element => {
   const { headerNames, data, directoryOnClick, fileOnClick } = props;
   return (
-    <div className={"fileListDivContainer"}>
+    <div className="fileListDivContainer">
       <ListHeader coloumnNames={headerNames} />
       <DataList
         dataRows={data}

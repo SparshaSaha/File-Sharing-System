@@ -1,9 +1,10 @@
 import * as React from "react";
 import { IFile } from "../../interfaces/file.interface";
 import { IFolder } from "../../interfaces/folder.interface";
-import { downloadFile, fetchAllFiles , fetchDirectoryByPath } from "./utils";
+import { downloadFile, fetchAllFiles, fetchDirectoryByPath } from "./utils";
 import { FileList } from "../fileList";
 import { GlobalContext } from "../../contexts/globalContext";
+import { CreateDirectory } from "../directoryOps/createDirectory";
 /* 
 Fetches all Files from Server
 Maintains it's own state and shows currentDirectoryFiles
@@ -18,7 +19,7 @@ export const FileViewer = () => {
   useFetchFilesEffect(setFilesData, setCurrentDir); 
 
   const directories = useMemoizedFileDataPrepare(currentDir);   //figures out all files/folders within currentDir
-
+   
   const {
     directoryOnClickCallback,
     filesOnClickCallback,
@@ -35,7 +36,9 @@ export const FileViewer = () => {
 
   return (
     <>
+    <div className="container d-flex flex-row">
       <button
+        className="btn btn-danger"
         disabled={currentDir == filesData}
         onClick={() => {
         setCurrentDir(filesData);
@@ -44,11 +47,17 @@ export const FileViewer = () => {
         Back to Root Directory
       </button>
       <button
+        type="button"
+        className="btn btn-primary ml-3"
         disabled={currentDir == filesData}
         onClick={levelUp}
       >
         Back
       </button>
+      <div className="ml-5">
+       <CreateDirectory />
+      </div>
+    </div>
       {currentDir ? (
         <FileList
           headerNames={["Name", "Size", "Type", "Path"]}

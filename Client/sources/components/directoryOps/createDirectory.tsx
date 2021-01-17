@@ -18,7 +18,7 @@ export const CreateDirectory = () => {
     return (
         <div>
             <input type="text" ref={folderName}/>
-            <button onClick={handleClick}>Create Directory</button>
+            <button type="button" className="btn btn-dark ml-2" onClick={handleClick}>Create Directory</button>
         </div>
     )
 }
