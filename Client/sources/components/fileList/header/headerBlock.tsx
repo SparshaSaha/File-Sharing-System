@@ -6,5 +6,5 @@ interface IHeaderBlockProps {
 
 export const HeaderBlock = (props: IHeaderBlockProps): JSX.Element => {
   const { headerName } = props;
-  return <div className={"blockStyles"}> {headerName} </div>;
+  return <div className="blockStyles"> {headerName} </div>;
 };

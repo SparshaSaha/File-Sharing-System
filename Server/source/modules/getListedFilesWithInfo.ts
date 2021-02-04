@@ -10,9 +10,15 @@ const readdir = promisify(fs.readdir);
 
 export const getListedFilesWithInfo = (app: IApp) => {
     const baseDir = path.join(__dirname, "../Database");
-    
+    let reqPath: string;
+
     app.get('/getFilesDetails', async (_request: IRequest, response: IResponse) => {
-        recursivelyParseFolders(baseDir).then((folder: IFolder) => {
+        if(_request.query.path)
+            reqPath = String(_request.query.path);
+        else
+            reqPath = baseDir;    
+              
+        recursivelyParseFolders(reqPath).then((folder: IFolder) => {
             response.status(200).json(folder);
         }).catch((_error: Error) => {
             response.status(errorCodes.INTERNAL_SERVER_ERROR).send({});

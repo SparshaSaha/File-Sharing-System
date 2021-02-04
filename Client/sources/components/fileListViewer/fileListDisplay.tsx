@@ -1,36 +1,65 @@
 import * as React from "react";
 import { IFile } from "../../interfaces/file.interface";
 import { IFolder } from "../../interfaces/folder.interface";
-import { downloadFile, fetchAllFiles } from "./utils";
+import { downloadFile, fetchAllFiles, fetchDirectoryByPath } from "./utils";
 import { FileList } from "../fileList";
+import { GlobalContext } from "../../contexts/globalContext";
+import { CreateDirectory } from "../directoryOps/createDirectory";
 
 /* 
 Fetches all Files from Server
 Maintains it's own state and shows currentDirectoryFiles
 */
 export const FileViewer = () => {
-  const [filesData, setFilesData] = React.useState<IFolder | undefined>(
-    undefined
-  );
-  const [currentDir, setCurrentDir] = React.useState<IFolder | undefined>(
-    undefined
-  );
+  const {
+    currentDir,
+    setCurrentDir,
+    filesData,
+    setFilesData,
+  } = React.useContext(GlobalContext);
+
   useFetchFilesEffect(setFilesData, setCurrentDir);
+
+  // Figures out all files/folders within currentDir
   const directories = useMemoizedFileDataPrepare(currentDir);
+
   const {
     directoryOnClickCallback,
     filesOnClickCallback,
   } = useOnClickCallbacks(setCurrentDir, currentDir);
+
+  // Handles the back button click and moves one level up
+  const levelUp = async () => {
+    const tempPath = currentDir.path.slice(0, currentDir.path.lastIndexOf("/"));
+    if (tempPath === filesData.path) setCurrentDir(filesData);
+    else setCurrentDir(await fetchDirectoryByPath(tempPath));
+  };
+
+  const setDirCallback = React.useCallback(() => {
+    setCurrentDir(filesData);
+  }, []);
   return (
     <>
-      <button
-        disabled={currentDir === filesData}
-        onClick={() => {
-          setCurrentDir(filesData);
-        }}
-      >
-        Back to Root Directory
-      </button>
+      <div className="container d-flex flex-row">
+        <button
+          className="btn btn-danger"
+          disabled={currentDir === filesData}
+          onClick={setDirCallback}
+        >
+          Back to Root Directory
+        </button>
+        <button
+          type="button"
+          className="btn btn-primary ml-3"
+          disabled={currentDir === filesData}
+          onClick={levelUp}
+        >
+          Back
+        </button>
+        <div className="ml-5">
+          <CreateDirectory />
+        </div>
+      </div>
       {currentDir ? (
         <FileList
           headerNames={["Name", "Size", "Type", "Path"]}
@@ -83,10 +112,12 @@ const useOnClickCallbacks = (
 // Prepare current Directory data
 // This function has been memoized to save computation
 const useMemoizedFileDataPrepare = (currentDirData: IFolder | undefined) =>
+  //runs everytime currentDirectory changes
   React.useMemo(() => {
     const directories: string[][] = [];
     if (currentDirData) {
       currentDirData.folders.forEach((folder: IFolder) => {
+        //preparing all folder info within currentDir
         const folderInfos: string[] = [];
         folderInfos.push(folder.path.split("/").pop());
         folderInfos.push("");
@@ -98,6 +129,7 @@ const useMemoizedFileDataPrepare = (currentDirData: IFolder | undefined) =>
       });
 
       currentDirData.files.forEach((file: IFile) => {
+        //preparing all files info within currentDirectory
         const fileInfos: string[] = [];
         fileInfos.push(file.name);
         fileInfos.push(`${file.size}`);

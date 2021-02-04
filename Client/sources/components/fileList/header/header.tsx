@@ -9,7 +9,7 @@ interface IListHeaderProps {
 export const ListHeader = (props: IListHeaderProps): JSX.Element => {
   const { coloumnNames } = props;
   return (
-    <div className={"divStyles"}>
+    <div className="divStyles text-dark">
       {coloumnNames.map((coloumnName: string) => (
         <HeaderBlock key={coloumnName} headerName={coloumnName}></HeaderBlock>
       ))}

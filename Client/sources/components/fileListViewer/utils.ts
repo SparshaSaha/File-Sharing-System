@@ -6,12 +6,21 @@ import { downloadFileUrl, getFilesUrl } from '../../urls';
 
 export const fetchAllFiles = async () => {
     try {
-    const response: AxiosResponse<IFolder> = await axios.get(getFilesUrl);
-    return response.data;
+        const response: AxiosResponse<IFolder> = await axios.get(getFilesUrl);
+        return response.data;
     } catch(error) {
         console.error("Error getting all files");
     }
 };
+
+export const fetchDirectoryByPath = async (path: string) =>{
+     try {
+         const response: AxiosResponse<IFolder> = await axios.get(getFilesUrl,{ params: { path : path}});
+         return response.data;
+     } catch (err) {
+         console.log("Error occurred getting the directory");
+     }
+}
 
 export const downloadFile = async (path: string) => {
     try {
