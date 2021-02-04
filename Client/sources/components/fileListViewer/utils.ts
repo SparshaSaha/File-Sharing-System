@@ -18,7 +18,7 @@ export const fetchDirectoryByPath = async (path: string) =>{
          const response: AxiosResponse<IFolder> = await axios.get(getFilesUrl,{ params: { path : path}});
          return response.data;
      } catch (err) {
-         console.log("error occurred getting the directory !");
+         console.log("Error occurred getting the directory");
      }
 }
 

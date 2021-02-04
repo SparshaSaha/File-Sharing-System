@@ -4,21 +4,19 @@ import * as fs from 'fs';
 
 export const createDirectory = (app: IApp) =>{
      
-    app.post('/createDirectory',(req: IRequest,resp: IResponse)=>{
+    app.post('/createDirectory',(request: IRequest, response: IResponse)=>{
                 
-        const reqPath = req.body.path;             //path to create new folder 
-        const dirName = req.body.folderName;      //name of new folder to be created
+        const reqPath = request.body.path;             //path to create new folder 
+        const dirName = request.body.folderName;      //name of new folder to be created
         
         if(validatePath(reqPath)){
             const msg = createDirectory(reqPath,dirName);
-            resp.send({ msg : msg});
+            response.send({ msg : msg});
         }
         else{
-            resp.send({ msg : "Invalid path !"}).status(400);
+            response.send({ msg : "Invalid path !"}).status(400);
         }
     })
-
-    
 
     const createDirectory = (path: string, dirName: string) =>{
           try{

@@ -1,5 +1,4 @@
-import Axios from "axios";
-import axios, { AxiosResponse } from 'axios';
+import axios from 'axios';
 import { createDirectoryUrl, deleteDirectoryUrl } from '../../urls';
 
 export const makeDirectory = async (path: string, folderName: string) =>{
@@ -9,7 +8,7 @@ export const makeDirectory = async (path: string, folderName: string) =>{
         return response.data;
     }
     catch(err){
-        console.log("Failed to create directory !");  
+        console.log("Failed to create directory");  
     }
 }
 
@@ -20,6 +19,6 @@ export const removeDirectory = async (path: string) =>{
         return response.data;
     }
     catch(err){
-        console.log("failed to delete !");
+        console.log("Failed to delete");
     }
 }

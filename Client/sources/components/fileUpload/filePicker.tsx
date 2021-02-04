@@ -10,11 +10,9 @@ interface IFilePickerProps {
   setProgress: React.Dispatch<number>;
 }
 
-const { useContext } = React;
-
 export const FilePicker = (props: IFilePickerProps) => {
   const { setFileToUpload, fileToUpload, setProgress } = props;
-  const { currentDir } = useContext(GlobalContext);
+  const { currentDir } = React.useContext(GlobalContext);
   // Ref to input element to reset value on file upload completion
   const inputRef = React.useRef<HTMLInputElement>();
 
@@ -31,7 +29,12 @@ export const FilePicker = (props: IFilePickerProps) => {
       <label>
         <input type="file" onChange={onFileChange} ref={inputRef} />
       </label>
-      <button type="button" className="btn btn-warning" onClick={onFileUpload} disabled={!fileToUpload}>
+      <button
+        type="button"
+        className="btn btn-warning"
+        onClick={onFileUpload}
+        disabled={!fileToUpload}
+      >
         Upload File
       </button>
     </>
@@ -84,7 +87,7 @@ const handleFileUpload = async (
   let formData = new FormData();
   formData.append("filePath", currentDir.path);
   formData.append("file", fileToUpload, fileToUpload.name);
-  
+
   try {
     await axios.post(uploadFileUrl, formData, {
       headers: {
