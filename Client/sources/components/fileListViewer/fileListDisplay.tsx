@@ -37,7 +37,7 @@ export const FileViewer = () => {
 
   const setDirCallback = React.useCallback(() => {
     setCurrentDir(filesData);
-  }, []);
+  }, [filesData]);
   return (
     <>
       <div className="container d-flex flex-row">
