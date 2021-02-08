@@ -5,8 +5,8 @@ export const DeleteDirectory = () => {
   const inputRef = React.useRef<HTMLInputElement>();
 
   const handleClick = async () => {
-    await removeDirectory(inputRef.current.value);
-    alert("Deleted successfuly ! Refresh to see changes...")
+    const msg = await removeDirectory(inputRef.current.value);
+    alert(`${msg.msg} Refresh to see changes....`)
   };
 
   return (
