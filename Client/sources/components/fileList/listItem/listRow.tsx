@@ -5,10 +5,11 @@ import "../../../styles/listRow.css";
 interface IListRow {
   rowItems: string[];
   onItemClick: (event: React.SyntheticEvent) => void;
+  onRightClick?: (event: React.SyntheticEvent) => void;
 }
 
 export const ListRow = (props: IListRow): JSX.Element => {
-  const { rowItems, onItemClick } = props;
+  const { rowItems, onItemClick, onRightClick } = props;
   return (
     <div className="listRow">
       {rowItems[0] === "dir" || rowItems[0] === "file" ? undefined : (
@@ -16,11 +17,12 @@ export const ListRow = (props: IListRow): JSX.Element => {
           key={rowItems[0]}
           title={rowItems[0]}
           onItemClick={onItemClick}
+          onRightClick={onRightClick}
         />
       )}
       {rowItems.slice(1, rowItems.length).map((rowItem: string) => {
         return rowItem === "dir" || rowItem === "file" ? undefined : (
-          <ListItemBlock key={rowItem} title={rowItem} />
+          <ListItemBlock key={rowItem} title={rowItem} onRightClick={onRightClick}/>
         );
       })}
     </div>

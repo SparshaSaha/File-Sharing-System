@@ -10,7 +10,7 @@ export const CreateDirectory = () => {
       currentDir.path,
       folderName.current.value
     );
-    console.log(response);
+    alert("Created Successfully ! Refresh to see changes...")
   };
 
   return (

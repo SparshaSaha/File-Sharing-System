@@ -6,6 +6,7 @@ export const DeleteDirectory = () => {
 
   const handleClick = async () => {
     await removeDirectory(inputRef.current.value);
+    alert("Deleted successfuly ! Refresh to see changes...")
   };
 
   return (

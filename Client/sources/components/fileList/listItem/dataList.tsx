@@ -7,9 +7,13 @@ interface IDataListProps {
   fileOnClick: (event: React.SyntheticEvent, path: string) => void;
 }
 
+
+
 export const DataList = (props: IDataListProps): JSX.Element => {
   const { dataRows, directoryOnClick, fileOnClick } = props;
   const { directoryData, fileData } = useMemoizedSegregator(dataRows);
+  
+  
 
   return (
     <>
@@ -23,10 +27,19 @@ export const DataList = (props: IDataListProps): JSX.Element => {
               const path = row[3];
               // Storing path in this method's closure will help us to switch directory on click
               directoryOnClick(event, path);
-            }}
+           }}
+           onRightClick={(event: React.MouseEvent) =>{
+             event.preventDefault();
+             const path = row[3];
+             navigator.clipboard.writeText(path);
+             alert("Path copied");
+          }}
           />
         );
       })}
+
+      
+
       {fileData.map((row: string[]) => {
         return (
           <ListRow
@@ -36,6 +49,12 @@ export const DataList = (props: IDataListProps): JSX.Element => {
               const path = row[3];
               fileOnClick(event, path);
             }}
+            onRightClick={(event: React.MouseEvent) =>{
+             event.preventDefault();
+             const path = row[3];
+             navigator.clipboard.writeText(path);
+             alert("Path copied");
+          }}
           />
         );
       })}
