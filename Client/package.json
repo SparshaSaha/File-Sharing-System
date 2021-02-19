@@ -6,7 +6,8 @@
   "license": "MIT",
   "scripts": {
     "prod": "webpack --config webpack.production.config.js",
-    "dev": "webpack serve --config webpack.development.config.js --open"
+    "dev": "webpack serve --config webpack.development.config.js --open",
+    "buildDev": "webpack --config webpack.development.config.js"
   },
   "dependencies": {
     "axios": "^0.21.0",

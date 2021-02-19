@@ -4,7 +4,8 @@
   "scripts": {
     "prod": "webpack --config webpack.production.config.js",
     "dev": "webpack --config webpack.development.config.js",
-    "serve": "nodemon dev/startApp.js"
+    "serve": "nodemon dev/startApp.js",
+    "prodServe": "nodemon dist/startApp.js"
   },
   "main": "index.js",
   "repository": "https://github.com/SparshaSaha/File-Sharing-System.git",

@@ -9,7 +9,8 @@ import { errorCodes } from '../errorCodes/errorCodes';
 const readdir = promisify(fs.readdir);
 
 export const getListedFilesWithInfo = (app: IApp) => {
-    const baseDir = path.join(__dirname, "../Database");
+    const configFile = require("../../../config.json");
+    const baseDir = path.join(__dirname, configFile.storagePath);
     let reqPath: string;
 
     app.get('/getFilesDetails', async (_request: IRequest, response: IResponse) => {

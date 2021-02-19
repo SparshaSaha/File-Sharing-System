@@ -1,12 +1,11 @@
 import { IApp, IRequest, IResponse } from "../interfaces/express.interface";
 import * as multer from "multer";
-import * as path from "path";
 import { IMulterFile, IMulterDestinationCallback, IMulterFileNameCallback, IMulter } from "../interfaces/multer.interface";
 
 
 const fileStorage = multer.diskStorage({
-    destination: (_request: IRequest, file: IMulterFile, callback: IMulterDestinationCallback) => {
-        const { filePath } =_request.body;
+    destination: (request: IRequest, file: IMulterFile, callback: IMulterDestinationCallback) => {
+        const { filePath } = request.body;
         console.log(`Uploading file: ${file.originalname}`);
         callback(null, filePath);
     },

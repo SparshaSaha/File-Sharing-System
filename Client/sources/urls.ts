@@ -1,4 +1,5 @@
-const baseUrl = "http://localhost:3001";
+const configFile = require("../../config.json");
+const baseUrl = configFile.serverUrl;
 export const uploadFileUrl = `${baseUrl}/uploadFile`
 export const getFilesUrl = `${baseUrl}/getFilesDetails`
 export const downloadFileUrl = `${baseUrl}/getFileFromPath`
