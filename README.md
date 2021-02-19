@@ -47,6 +47,10 @@ Change the following in the config.json file:
 2. `yarn prod`
 3. `serve -s prod`
 
+## Run the React web app:
+In dev mode, appserver runs at `http://localhost:8080`
+In prod mode, appserver will show url after running `serve -s prod`. Use that url to run the app on any machine connected to your LAN.
+
 #### Developers:-
 Sparsha Saha
 
