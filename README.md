@@ -19,15 +19,26 @@ We will use **webpack** for bundling our source code for the Server as well as t
 
 **Answer: Honestly speaking, it is the only module bundler I know how to use. And also it's pretty great!**
 
-## Setup guide
+## Setup guide (Dev mode)
 ### Server
-1. yarn
-2. yarn dev
-3. yarn devServe
+1. `yarn`
+2. `yarn dev`
+3. `yarn devServe`
 
 ### Client
-1. yarn
-2. yarn dev
+1. `yarn`
+2. `yarn dev`
+
+## Setup guide (Prod mode)
+### Server
+1. `yarn`
+2. `yarn prod`
+3. `yarn prodServe`
+
+### Client
+1. `yarn`
+2. `yarn prod`
+3. `serve -s prod`
 
 #### Developers:-
 Sparsha Saha
