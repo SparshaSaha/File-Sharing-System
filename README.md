@@ -4,7 +4,7 @@
 This repository aims at creating a Network Attached Storage(NAS) which would work for local wifi networks only at the moment.
 Though there are tons of tools and existing softwares which already do this, but we thought of taking this up as a side project just for the sake of learning.
 
-## Details for Nerds (This being Github, anyone reading this probably is one :P)
+## Details for Nerds
 The project has two parts :-
 1. **NodeJS server which will have the NAS device**
 2. **Client Side React Web Application which will internally perform interactions with the server**
